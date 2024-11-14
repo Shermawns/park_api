@@ -10,6 +10,11 @@ public class UserMapper {
         User user = new User();
         user.setUsername(requestUserDTO.getUsername());
         user.setPassword(requestUserDTO.getPassword());
+
+        if (requestUserDTO.getRole() != null){
+            user.setRole(Role.ADMIN);
+        }
+
         return user;
     }
 

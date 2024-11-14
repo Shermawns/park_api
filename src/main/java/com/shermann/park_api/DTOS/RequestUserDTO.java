@@ -1,5 +1,6 @@
 package com.shermann.park_api.DTOS;
 
+import com.shermann.park_api.models.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,5 +14,6 @@ public class RequestUserDTO {
 
     private String username;
     private String password;
+    private Role role;
 
 }

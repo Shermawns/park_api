@@ -26,9 +26,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
+    public ResponseEntity<ResponseUserDTO> findById(@PathVariable Long id){
         User result = userService.findById(id);
-        return ResponseEntity.ok().body(result);
+        return ResponseEntity.ok().body(UserMapper.toResponseUserDTO(result));
     }
 
     @PostMapping
