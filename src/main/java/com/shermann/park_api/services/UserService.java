@@ -28,10 +28,27 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User editPassword(Long id, String password){
+
+    public User editPassword(Long id, String currentPassword, String newPassword, String confirmNewPassword) {
+
+
         User user = findById(id);
-        user.setPassword(password);
+
+        if (!currentPassword.equals(user.getPassword())){
+            throw new RuntimeException("Error in authentication !");
+        }
+
+        if (!newPassword.equals(confirmNewPassword)){
+            throw new RuntimeException("The passwords are not correct");
+        }
+
+        user.setPassword(newPassword);
+
+        if (!user.getPassword().equals(newPassword)){
+            throw new RuntimeException("The password is wrong!");
+        }
+
+
         return save(user);
     }
-
 }

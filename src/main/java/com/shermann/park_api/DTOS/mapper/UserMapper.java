@@ -1,5 +1,6 @@
 package com.shermann.park_api.DTOS.mapper;
 
+import com.shermann.park_api.DTOS.RequestPasswordDTO;
 import com.shermann.park_api.DTOS.RequestUserDTO;
 import com.shermann.park_api.DTOS.ResponseUserDTO;
 import com.shermann.park_api.models.User;
@@ -25,5 +26,18 @@ public class UserMapper {
         userResponse.setRole(user.getRole());
 
         return userResponse;
+    }
+
+    public static User newPasswordDTO(RequestPasswordDTO requestPasswordDTO){
+        User user = new User();
+        user.setPassword(requestPasswordDTO.getNewPassword());
+
+        user.setPassword(requestPasswordDTO.getConfirmNewPassword());
+
+        if (user.getPassword() != requestPasswordDTO.getConfirmNewPassword()){
+            new Exception("WRONG PASSWORD");
+        }
+
+        return user;
     }
 }

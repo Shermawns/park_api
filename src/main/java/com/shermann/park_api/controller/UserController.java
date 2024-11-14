@@ -1,5 +1,6 @@
 package com.shermann.park_api.controller;
 
+import com.shermann.park_api.DTOS.RequestPasswordDTO;
 import com.shermann.park_api.DTOS.RequestUserDTO;
 import com.shermann.park_api.DTOS.ResponseUserDTO;
 import com.shermann.park_api.DTOS.mapper.UserMapper;
@@ -43,9 +44,11 @@ public class UserController {
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<User> updatePassword(@PathVariable Long id, @RequestBody User user){
-        User user1 = userService.editPassword(id, user.getPassword());
-        return ResponseEntity.ok().body(user1);
+    public ResponseEntity<ResponseUserDTO> updatePassword(@PathVariable Long id, @RequestBody RequestPasswordDTO passwordDTO){
+
+        User user1 = userService.editPassword(id, passwordDTO.getCurrentPassword(), passwordDTO.getNewPassword(), passwordDTO.getConfirmNewPassword());
+
+        return ResponseEntity.ok().body(UserMapper.toResponseUserDTO(user1));
     }
 
 }
