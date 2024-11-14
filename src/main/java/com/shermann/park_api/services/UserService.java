@@ -28,4 +28,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User editPassword(Long id, String password){
+        User user = findById(id);
+        user.setPassword(password);
+        return save(user);
+    }
+
 }
