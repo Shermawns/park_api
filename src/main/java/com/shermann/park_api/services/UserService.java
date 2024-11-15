@@ -1,5 +1,6 @@
 package com.shermann.park_api.services;
 
+import com.shermann.park_api.DTOS.ResponseUserDTO;
 import com.shermann.park_api.models.User;
 import com.shermann.park_api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -21,9 +21,9 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<ResponseUserDTO>> findAll(){
         List<User> result = userService.findAll();
-        return ResponseEntity.ok().body(result);
+        return ResponseEntity.ok().body(UserMapper.toListUserDTO(result));
     }
 
     @GetMapping(value = "/{id}")

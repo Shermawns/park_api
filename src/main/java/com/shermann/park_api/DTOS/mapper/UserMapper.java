@@ -6,6 +6,9 @@ import com.shermann.park_api.DTOS.ResponseUserDTO;
 import com.shermann.park_api.models.User;
 import com.shermann.park_api.models.enums.Role;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserMapper {
     public static User toUserRequest(RequestUserDTO requestUserDTO){
         User user = new User();
@@ -17,6 +20,15 @@ public class UserMapper {
         }
 
         return user;
+    }
+
+    public static List<ResponseUserDTO> toListUserDTO (List<User> users){
+        List<ResponseUserDTO> dtos = new ArrayList<>();
+        for (User x : users){
+            ResponseUserDTO userDTO = new ResponseUserDTO(x.getId(), x.getUsername(), x.getRole());
+            dtos.add(userDTO);
+        }
+        return dtos;
     }
 
     public static ResponseUserDTO toResponseUserDTO(User user){
