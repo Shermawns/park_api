@@ -9,6 +9,7 @@ import com.shermann.park_api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseUserDTO> create(@RequestBody RequestUserDTO requestUser){
+    public ResponseEntity<ResponseUserDTO> create(@RequestBody @Validated RequestUserDTO requestUser){
         User user = UserMapper.toUserRequest(requestUser);
 
         User result = userService.save(user);
@@ -44,7 +45,7 @@ public class UserController {
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<ResponseUserDTO> updatePassword(@PathVariable Long id, @RequestBody RequestPasswordDTO passwordDTO){
+    public ResponseEntity<ResponseUserDTO> updatePassword(@PathVariable Long id, @RequestBody @Validated RequestPasswordDTO passwordDTO){
 
         User user1 = userService.editPassword(id, passwordDTO.getCurrentPassword(), passwordDTO.getNewPassword(), passwordDTO.getConfirmNewPassword());
 

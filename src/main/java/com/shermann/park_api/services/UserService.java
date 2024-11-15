@@ -1,13 +1,14 @@
 package com.shermann.park_api.services;
 
-import com.shermann.park_api.DTOS.ResponseUserDTO;
+import com.shermann.park_api.controller.exceptions.EmailUniqueViolationException;
+import com.shermann.park_api.controller.exceptions.EntityNotFoundExceptions;
 import com.shermann.park_api.models.User;
 import com.shermann.park_api.repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -21,12 +22,16 @@ public class UserService {
 
     public User findById(Long id){
         return userRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("User not found in the system")
+                () -> new EntityNotFoundExceptions(String.format("User %s not found in the system", id))
         );
     }
 
     public User save(User user){
-        return userRepository.save(user);
+        try {
+            return userRepository.save(user);
+        }catch (org.springframework.dao.DataIntegrityViolationException ex){
+                throw new EmailUniqueViolationException(String.format("The user %s is already registered", user.getUsername()));
+        }
     }
 
 
