@@ -1,4 +1,4 @@
-package com.shermann.park_api.DTOS;
+package com.shermann.park_api.dto;
 
 import com.shermann.park_api.models.enums.Role;
 import lombok.AllArgsConstructor;

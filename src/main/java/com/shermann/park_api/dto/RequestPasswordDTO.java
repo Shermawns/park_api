@@ -1,4 +1,4 @@
-package com.shermann.park_api.DTOS;
+package com.shermann.park_api.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

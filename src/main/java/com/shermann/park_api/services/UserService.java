@@ -2,6 +2,7 @@ package com.shermann.park_api.services;
 
 import com.shermann.park_api.controller.exceptions.EmailUniqueViolationException;
 import com.shermann.park_api.controller.exceptions.EntityNotFoundExceptions;
+import com.shermann.park_api.controller.exceptions.PasswordInvalidException;
 import com.shermann.park_api.models.User;
 import com.shermann.park_api.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -41,19 +42,14 @@ public class UserService {
         User user = findById(id);
 
         if (!currentPassword.equals(user.getPassword())){
-            throw new RuntimeException("Error in authentication !");
+            throw new PasswordInvalidException("Error in authentication !");
         }
 
         if (!newPassword.equals(confirmNewPassword)){
-            throw new RuntimeException("The passwords are not correct");
+            throw new PasswordInvalidException("The passwords are not correct");
         }
 
         user.setPassword(newPassword);
-
-        if (!user.getPassword().equals(newPassword)){
-            throw new RuntimeException("The password is wrong!");
-        }
-
 
         return save(user);
     }

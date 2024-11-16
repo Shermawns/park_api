@@ -1,8 +1,8 @@
-package com.shermann.park_api.DTOS.mapper;
+package com.shermann.park_api.dto.mapper;
 
-import com.shermann.park_api.DTOS.RequestPasswordDTO;
-import com.shermann.park_api.DTOS.RequestUserDTO;
-import com.shermann.park_api.DTOS.ResponseUserDTO;
+import com.shermann.park_api.dto.RequestPasswordDTO;
+import com.shermann.park_api.dto.RequestUserDTO;
+import com.shermann.park_api.dto.ResponseUserDTO;
 import com.shermann.park_api.models.User;
 import com.shermann.park_api.models.enums.Role;
 
