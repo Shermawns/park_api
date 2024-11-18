@@ -4,6 +4,9 @@ import com.shermann.park_api.dto.RequestPasswordDTO;
 import com.shermann.park_api.dto.RequestUserDTO;
 import com.shermann.park_api.dto.ResponseUserDTO;
 import com.shermann.park_api.models.UserModel;
+<<<<<<< HEAD
+=======
+>>>>>>> 593b2048c08358e4452b466edb1d5897a09a0c57
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,9 @@
 package com.shermann.park_api.dto;
 
+<<<<<<< HEAD
 import com.shermann.park_api.models.UserModel;
+=======
+>>>>>>> 593b2048c08358e4452b466edb1d5897a09a0c57
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

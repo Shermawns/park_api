@@ -48,5 +48,4 @@ public class UserModel implements Serializable {
         CLIENT
 
     }
-
 }
