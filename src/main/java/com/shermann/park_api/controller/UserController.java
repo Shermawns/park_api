@@ -5,7 +5,7 @@ import com.shermann.park_api.dto.RequestPasswordDTO;
 import com.shermann.park_api.dto.RequestUserDTO;
 import com.shermann.park_api.dto.ResponseUserDTO;
 import com.shermann.park_api.dto.mapper.UserMapper;
-import com.shermann.park_api.models.User;
+import com.shermann.park_api.models.UserModel;
 import com.shermann.park_api.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -13,7 +13,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.persistence.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +36,7 @@ public class UserController {
             })
     })
     public ResponseEntity<List<ResponseUserDTO>> findAll(){
-        List<User> result = userService.findAll();
+        List<UserModel> result = userService.findAll();
         return ResponseEntity.ok().body(UserMapper.toListUserDTO(result));
     }
 
@@ -50,7 +49,7 @@ public class UserController {
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
             })
     public ResponseEntity<ResponseUserDTO> findById(@PathVariable Long id){
-        User result = userService.findById(id);
+        UserModel result = userService.findById(id);
         return ResponseEntity.ok().body(UserMapper.toResponseUserDTO(result));
     }
 
@@ -65,9 +64,9 @@ public class UserController {
                         content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
     })
     public ResponseEntity<ResponseUserDTO> create(@RequestBody @Validated RequestUserDTO requestUser){
-        User user = UserMapper.toUserRequest(requestUser);
+        UserModel userModel = UserMapper.toUserRequest(requestUser);
 
-        User result = userService.save(user);
+        UserModel result = userService.save(userModel);
 
         ResponseUserDTO responseUserDTO = UserMapper.toResponseUserDTO(result);
 
@@ -86,9 +85,9 @@ public class UserController {
             })
     public ResponseEntity<ResponseUserDTO> updatePassword(@PathVariable Long id, @RequestBody @Validated RequestPasswordDTO passwordDTO){
 
-        User user1 = userService.editPassword(id, passwordDTO.getCurrentPassword(), passwordDTO.getNewPassword(), passwordDTO.getConfirmNewPassword());
+        UserModel userModel1 = userService.editPassword(id, passwordDTO.getCurrentPassword(), passwordDTO.getNewPassword(), passwordDTO.getConfirmNewPassword());
 
-        return ResponseEntity.ok().body(UserMapper.toResponseUserDTO(user1));
+        return ResponseEntity.ok().body(UserMapper.toResponseUserDTO(userModel1));
     }
 
 }

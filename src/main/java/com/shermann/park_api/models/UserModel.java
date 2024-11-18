@@ -9,10 +9,15 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-@Getter @Setter @NoArgsConstructor @EqualsAndHashCode(of = "id")
+
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "tb_user")
-public class User implements Serializable {
+public class UserModel implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,11 +25,11 @@ public class User implements Serializable {
     @Column(nullable = false, unique = true, length = 100)
     private String username;
 
-    @Column(nullable = false, unique = false, length = 200)
+    @Column(nullable = false, length = 200)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = false, length = 25)
+    @Column(nullable = false, length = 25)
     private Role role = Role.CLIENT;
 
     @Column(name = "created_date")
@@ -38,7 +43,4 @@ public class User implements Serializable {
 
     @Column(name = "update_by")
     private String updateBy;
-
-
-
 }

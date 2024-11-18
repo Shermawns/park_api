@@ -3,9 +3,8 @@ package com.shermann.park_api.services;
 import com.shermann.park_api.controller.exceptions.EmailUniqueViolationException;
 import com.shermann.park_api.controller.exceptions.EntityNotFoundExceptions;
 import com.shermann.park_api.controller.exceptions.PasswordInvalidException;
-import com.shermann.park_api.models.User;
+import com.shermann.park_api.models.UserModel;
 import com.shermann.park_api.repositories.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,31 +16,31 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll(){
+    public List<UserModel> findAll(){
         return userRepository.findAll();
     }
 
-    public User findById(Long id){
+    public UserModel findById(Long id){
         return userRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundExceptions(String.format("User %s not found in the system", id))
         );
     }
 
-    public User save(User user){
+    public UserModel save(UserModel userModel){
         try {
-            return userRepository.save(user);
+            return userRepository.save(userModel);
         }catch (org.springframework.dao.DataIntegrityViolationException ex){
-                throw new EmailUniqueViolationException(String.format("The user %s is already registered", user.getUsername()));
+                throw new EmailUniqueViolationException(String.format("The user %s is already registered", userModel.getUsername()));
         }
     }
 
 
-    public User editPassword(Long id, String currentPassword, String newPassword, String confirmNewPassword) {
+    public UserModel editPassword(Long id, String currentPassword, String newPassword, String confirmNewPassword) {
 
 
-        User user = findById(id);
+        UserModel userModel = findById(id);
 
-        if (!currentPassword.equals(user.getPassword())){
+        if (!currentPassword.equals(userModel.getPassword())){
             throw new PasswordInvalidException("Error in authentication !");
         }
 
@@ -49,8 +48,8 @@ public class UserService {
             throw new PasswordInvalidException("The passwords are not correct");
         }
 
-        user.setPassword(newPassword);
+        userModel.setPassword(newPassword);
 
-        return save(user);
+        return save(userModel);
     }
 }
