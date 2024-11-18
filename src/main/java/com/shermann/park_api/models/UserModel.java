@@ -1,6 +1,5 @@
 package com.shermann.park_api.models;
 
-import com.shermann.park_api.models.enums.Role;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -43,4 +42,10 @@ public class UserModel implements Serializable {
 
     @Column(name = "update_by")
     private String updateBy;
+
+    public enum Role {
+        ADMIN,
+        CLIENT
+
+    }
 }

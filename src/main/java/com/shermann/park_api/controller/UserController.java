@@ -23,7 +23,7 @@ import java.util.List;
 
 @Tag(name = "Users", description = "There are all operations like create user, edit password and list all users")
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "api/v1/users")
 public class UserController {
 
     @Autowired
@@ -40,7 +40,7 @@ public class UserController {
         return ResponseEntity.ok().body(UserMapper.toListUserDTO(result));
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "api/v1/{id}")
     @Operation(summary = "Find user by ID", description = "Feature to find a user by ID",
             responses = {
                     @ApiResponse(responseCode = "200",description = "User found successfully",
@@ -73,7 +73,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUserDTO);
     }
 
-    @PatchMapping(value = "/{id}")
+    @PatchMapping(value = "api/v1/{id}")
     @Operation(summary = "Change password", description = "Feature to change a user password",
             responses = {
                     @ApiResponse(responseCode = "204",description = "The password was changed successfully!",

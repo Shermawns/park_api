@@ -1,6 +1,5 @@
 package com.shermann.park_api.dto;
 
-import com.shermann.park_api.models.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,8 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestUserDTO {
-
+public class UserLoginDTO {
     @NotBlank
     @Email(message = "Email not valid", regexp = "^[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z]{2,}$")
     private String username;
@@ -22,6 +20,4 @@ public class RequestUserDTO {
     @NotBlank
     @Size(min = 6, max = 6)
     private String password;
-    private Role role;
-
 }
