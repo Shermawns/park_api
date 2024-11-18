@@ -52,4 +52,13 @@ public class UserService {
 
         return save(userModel);
     }
+
+    public UserModel findByName(String username) {
+        return userRepository.findByUsername(username).orElseThrow(
+        () -> new EntityNotFoundExceptions(String.format("User %s not found in the system", username)));
+    }
+
+    public UserModel.Role findRoleByUsername(String username) {
+        return userRepository.findRoleByUsername(username);
+    }
 }

@@ -1,6 +1,6 @@
 package com.shermann.park_api.dto;
 
-import com.shermann.park_api.models.enums.Role;
+import com.shermann.park_api.models.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
