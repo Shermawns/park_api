@@ -41,6 +41,6 @@ public class AuthorizationController {
         catch (AuthenticationException ex){
             log.warn("Bad credentials from username '{}'",userLoginDTO.getUsername());
         }
-        return ResponseEntity.badRequest().body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Invalid credentials"))
+        return ResponseEntity.badRequest().body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Invalid credentials"));
     }
 }

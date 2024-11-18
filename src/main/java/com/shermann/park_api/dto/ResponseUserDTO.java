@@ -1,6 +1,6 @@
 package com.shermann.park_api.dto;
 
-import com.shermann.park_api.models.Role;
+import com.shermann.park_api.models.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +14,6 @@ public class ResponseUserDTO {
 
     private Long id;
     private String username;
-    private Role role;
+    private UserModel.Role role;
 
 }

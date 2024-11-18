@@ -1,6 +1,6 @@
 package com.shermann.park_api.dto;
 
-import com.shermann.park_api.models.Role;
+import com.shermann.park_api.models.UserModel;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -22,6 +22,6 @@ public class RequestUserDTO {
     @NotBlank
     @Size(min = 6, max = 6)
     private String password;
-    private Role role;
+    private UserModel.Role role;
 
 }

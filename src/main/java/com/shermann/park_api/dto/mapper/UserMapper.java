@@ -4,7 +4,6 @@ import com.shermann.park_api.dto.RequestPasswordDTO;
 import com.shermann.park_api.dto.RequestUserDTO;
 import com.shermann.park_api.dto.ResponseUserDTO;
 import com.shermann.park_api.models.UserModel;
-import com.shermann.park_api.models.Role;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class UserMapper {
         userModel.setPassword(requestUserDTO.getPassword());
 
         if (requestUserDTO.getRole() != null){
-            userModel.setRole(Role.ADMIN);
+            userModel.setRole(UserModel.Role.ADMIN);
         }
 
         return userModel;
